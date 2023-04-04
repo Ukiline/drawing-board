@@ -64,6 +64,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      // favicon: path.resolve('../static/agcou-kqx6g-002.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,

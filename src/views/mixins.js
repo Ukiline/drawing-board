@@ -4,7 +4,8 @@
 import draw from '@/utils/shape'; // 封装绘制方法
 import { isEmpty, debounce } from '../utils';
 // import UndoCache from './UndoCache';
-import socket from '../utils/socket'
+// import socket from '../utils/socket'
+import axios from 'axios';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
@@ -93,14 +94,31 @@ export default {
 
     // 教师端发送 json
     sendEvent() {
-      socket.emit('report', JSON.stringify(this.canvasObj));
+      // socket.emit('report', JSON.stringify(this.canvasObj));
+      // socket.emit('report', this.canvasObj.toDataURL('image/png', 1).slice(22));
+      try {
+        axios({
+          url: "http://10.16.45.16:4000/postPic",
+          // url: "http://exp.kbm.ink/postPic",
+          method: "post",
+          data: {
+            str: this.canvasObj.toDataURL('image/png', 0.1),
+            type: 0,
+          },
+          }).then((res)=>{
+            console.log(res);
+        })
+      } catch (error) {
+        console.error(error)
+      }
+      // console.log(this.canvasObj.toDataURL('image/png', 1).slice(22));
     },
 
     // this.canvasObj.on(...)
     mouseDown({ e }) {
       this.setMousePosition(e, 'from');
       this.isDrawing = true;
-      this.sendEvent();
+    //  this.sendEvent();
     },
 
     mouseUp({ e }) {

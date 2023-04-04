@@ -11,7 +11,7 @@
 </template>
 <script>
   import { fabric } from 'fabric'
-  import socket from "../utils/socket"
+  // import socket from "../utils/socket"
   import boardMixin from './mixins'
   import PicBoard from "./src/PicBoard"
 
@@ -48,10 +48,12 @@
       },
 
       addListener() {
-        // 接受教师端播放的数据
-        socket.on('receive', (data) => {
-          this.play(data);
+        接受教师端播放的数据
+        socket.on('painting', (data) => {
+          // this.play(data);
+          console.log(data);
         })
+        // console.log('listen...')
       },
       
       // 播放

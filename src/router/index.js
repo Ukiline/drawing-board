@@ -12,10 +12,10 @@ export default new Router({
       name: 'TeacherBoard',
       component: TeacherBoard
     },
-    {
-      path: '/student',
-      name: 'StudentBoard',
-      component: StudentBoard
-    }
+    // {
+    //   path: '/show',
+    //   name: 'StudentBoard',
+    //   component: StudentBoard
+    // }
   ]
 })
